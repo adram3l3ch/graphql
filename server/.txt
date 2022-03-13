@@ -1,0 +1,38 @@
+graphql , express-graphql
+
+express-graphql - graphqlHTTP
+
+app.use("endpoint",graphqlHTTP({scheme:scheme,graphiql:true}))
+
+schema
+
+    const bookType = new GraphQLObjectType({
+        name:
+        fields:()=>{
+            name:{type:Type,resolve?:(parent,args)=>{}}
+        }
+    })
+
+    const RootQuery = new GraphQLObjectType({
+        name:
+        fields:{
+            book:{
+                type:returnType,
+                args:{arg:{type:Type}}
+                resolve:()=> fetchData
+            }
+        }
+    })
+
+    const Mutation = new GraphQLObjectType({
+        name:
+        fields:{
+            addBook:{
+                type:bookType,
+                args:{arg:{type:Type}}
+                resolve:()=> mutateData
+            }
+        }
+    })
+
+    module.exports = new GraphQLSchema({query:RootQuery,mutation:Mutation})

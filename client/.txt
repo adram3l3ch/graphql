@@ -1,0 +1,27 @@
+apollo - graphql js client (@apollo-client)
+
+init
+
+    client = new newApolloClient({uri,cache:new InlineCache()})
+    <ApolloProvider client={client}>
+        <App/>
+    </ApolloProvider>
+
+useful methods 
+
+    useQuery - fetch on render
+    useLazyQuery - fetch lazy
+    useMutation - mutate
+    gql - define query
+
+
+variable 
+
+    mutation/query name?($varName:Type,..){
+        name(name:$varName,...){
+            data...
+        }
+    }
+
+    getBook({variables:{name:value,...}})
+

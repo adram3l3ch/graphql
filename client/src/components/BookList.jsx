@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { gql, useQuery } from '@apollo/client';
+import BookDetails from './BookDetails';
 
 const getBooks = gql`
 	{
@@ -12,14 +13,25 @@ const getBooks = gql`
 
 const BookList = () => {
 	const { data, loading } = useQuery(getBooks);
+	const [state, setState] = useState();
 	return loading ? (
 		<h1>Loading...</h1>
 	) : (
-		<ul className='book-list'>
-			{data.books.map(book => (
-				<li key={book.id}>{book.name}</li>
-			))}
-		</ul>
+		<div>
+			<ul className='book-list'>
+				{data.books.map(book => (
+					<li
+						key={book.id}
+						onClick={e => {
+							setState(book.id);
+						}}
+					>
+						{book.name}
+					</li>
+				))}
+			</ul>
+			<BookDetails state={state} />
+		</div>
 	);
 };
 
